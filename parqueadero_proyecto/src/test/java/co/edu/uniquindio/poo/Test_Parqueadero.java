@@ -5,15 +5,13 @@ import java.time.LocalDateTime;
 import java.util.logging.Logger;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Pruebas para la clase Parqueadero.
- */
+// Pruebas para la clase Parqueadero.
+
 public class Test_Parqueadero {
     private static final Logger LOG = Logger.getLogger(Test_Parqueadero.class.getName());
 
-    /**
-     * Prueba para obtener la diferencia de horas entre la fecha de entrada y salida de un vehículo.
-     */
+    // Prueba para obtener la diferencia de horas entre la fecha de entrada y salida de un vehículo.
+
     @Test
     public void obtenerDiferenciaHorasTest() {
         LOG.info("Iniciando test obtenerDiferenciaHoras");
@@ -28,9 +26,8 @@ public class Test_Parqueadero {
         LOG.info("Finalizando test obtenerDiferenciaHoras");
     }
 
-    /**
-     * Prueba para calcular el costo de estacionamiento de varios tipos de vehículos.
-     */
+    // Prueba para calcular el costo de estacionamiento de varios tipos de vehículos.
+     
     @Test
     public void calcularCostoTest() {
         LOG.info("Iniciando test para calcular costo");
@@ -56,9 +53,8 @@ public class Test_Parqueadero {
         LOG.info("Finalizando test para calcular costo");
     }
 
-    /**
-     * Prueba para verificar si un vehículo está registrado en el parqueadero.
-     */
+    // Prueba para verificar si un vehículo está registrado en el parqueadero.
+    
     @Test
     public void verificarVehiculoExisteTest() {
         Parqueadero parqueadero = new Parqueadero(2, 2, 1000, 800, 500);
@@ -72,9 +68,8 @@ public class Test_Parqueadero {
         assertTrue(parqueadero.verificarVehiculoExiste(moto));
     }
 
-    /**
-     * Prueba para agregar un vehículo cuando no hay espacio disponible en el parqueadero.
-     */
+    // Prueba para agregar un vehículo cuando no hay espacio disponible en el parqueadero.
+     
     @Test
     public void agregarVehiculoSinEspacioTest() {
         Parqueadero parqueadero = new Parqueadero(1, 1, 1000, 800, 500); // Parqueadero con solo 1 espacio

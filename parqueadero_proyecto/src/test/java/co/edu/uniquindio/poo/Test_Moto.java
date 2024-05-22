@@ -4,14 +4,12 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Pruebas para la clase Moto.
- */
+// Pruebas para la clase Moto.
+ 
 public class Test_Moto {
 
-    /**
-     * Prueba la creación de una moto con valores iniciales.
-     */
+    // Prueba la creación de una moto con valores iniciales.
+     
     @Test
     public void crearMoto() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 5, 2, 8, 0);
@@ -25,9 +23,8 @@ public class Test_Moto {
         assertEquals(TipoMoto.CLASICA, moto.getTipo());
     }
 
-    /**
-     * Prueba la creación de una moto solo con fecha de entrada.
-     */
+    // Prueba la creación de una moto solo con fecha de entrada.
+    
     @Test
     public void crearMotoConFechaEntrada() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 5, 2, 8, 0);
@@ -41,9 +38,8 @@ public class Test_Moto {
         assertEquals(TipoMoto.CLASICA, moto.getTipo());
     }
 
-    /**
-     * Prueba la creación de una moto con fecha de entrada y salida.
-     */
+    // Prueba la creación de una moto con fecha de entrada y salida.
+     
     @Test
     public void crearMotoConFechaSalida() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 5, 2, 8, 0);
@@ -59,9 +55,8 @@ public class Test_Moto {
         assertEquals(TipoMoto.HIBRIDA, moto.getTipo());
     }
 
-    /**
-     * Prueba el establecimiento de la fecha de salida de una moto.
-     */
+    // Prueba el establecimiento de la fecha de salida de una moto.
+     
     @Test
     public void establecerFechaSalidaMoto() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 5, 2, 8, 0);

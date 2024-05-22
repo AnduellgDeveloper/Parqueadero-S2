@@ -13,10 +13,10 @@ public class Test_Carro {
     @Test
     public void crearCarro() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 6, 20, 9, 0);
-        Carro carro = new Carro("XYZ789", "Honda", "Carlos", fechaEntrada);
+        Carro carro = new Carro("RET783J", "Gixxer 250", "Carlos", fechaEntrada);
 
-        assertEquals("XYZ789", carro.getPlaca());
-        assertEquals("Honda", carro.getModelo());
+        assertEquals("RET783J", carro.getPlaca());
+        assertEquals("Gixxer 250", carro.getModelo());
         assertEquals("Carlos", carro.getPropietario());
         assertEquals(fechaEntrada, carro.getFechaEntrada());
         assertNull(carro.getFechaSalida());
