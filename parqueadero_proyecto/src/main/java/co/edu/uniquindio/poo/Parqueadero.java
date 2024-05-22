@@ -170,13 +170,29 @@ public class Parqueadero {
             for (int j = 0; j < columnas; j++) {
                 Vehiculo vehiculo = registroVehiculo.get(i).get(j);
                 if (vehiculo != null) {
-                    System.out.println("Vehículo en [" + i + "][" + j + "]: " + vehiculo.getPlaca());
+                    if (vehiculo instanceof Moto) {
+                        Moto moto = (Moto) vehiculo;
+                        System.out.println("Vehículo en [" + i + "][" + j + "]: " +
+                            "Placa: " + moto.getPlaca() + ", " +
+                            "Modelo: " + moto.getModelo() + ", " +
+                            "Propietario: " + moto.getPropietario() + ", " +
+                            "Fecha Entrada: " + moto.getFechaEntrada() + ", " +
+                            "Tipo: " + moto.getTipo() + ", " +
+                            "Velocidad Máxima: " + moto.getVelocidadMaxima());
+                    } else {
+                        System.out.println("Vehículo en [" + i + "][" + j + "]: " +
+                            "Placa: " + vehiculo.getPlaca() + ", " +
+                            "Modelo: " + vehiculo.getModelo() + ", " +
+                            "Propietario: " + vehiculo.getPropietario() + ", " +
+                            "Fecha Entrada: " + vehiculo.getFechaEntrada());
+                    }
                 } else {
-                    System.out.println("Espacio en [" + i + "][" + j + "]: vacío");
+                System.out.println("Espacio en [" + i + "][" + j + "]: vacío");
                 }
             }
         }
     }
+
     
     // Método para obtener la diferencia de horas entre la fecha de entrada y la fecha de salida de un vehículo.
     public long obtenerDiferenciaHoras(Vehiculo vehiculo) {
