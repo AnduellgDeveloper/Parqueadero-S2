@@ -11,7 +11,7 @@ class Moto extends Vehiculo {
         this.velocidadMaxima = velocidadMaxima;
         this.tipo = tipo;
     }
-
+// Constructor de moto con fecha de salida
     public Moto(String placa, String modelo, String propietario, LocalDateTime fechaEntrada, LocalDateTime fechaSalida, int velocidadMaxima, TipoMoto tipo) {
         super(placa, modelo, propietario, fechaEntrada, fechaSalida);
         this.velocidadMaxima = velocidadMaxima;

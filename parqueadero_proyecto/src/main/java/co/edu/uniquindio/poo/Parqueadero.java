@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+// Clase que representa un parqueadero.
 public class Parqueadero {
     private int filas;
     private int columnas;
@@ -19,6 +20,7 @@ public class Parqueadero {
     private int anoActual;
     private List<List<Vehiculo>> registroVehiculo;
 
+    // Método para configurar el parqueadero mediante entrada de usuario.
     public void ParqueaderoInput() {
         LocalDate fechaActual = LocalDate.now();
         Scanner scanner = new Scanner(System.in);
@@ -51,6 +53,7 @@ public class Parqueadero {
         imprimirMatriz(matriz);
     }
 
+    // Constructor de la clase Parqueadero.
     public Parqueadero(int filas, int columnas, int tarifaMotoH, int tarifaMotoC, int tarifaCarro) {
         LocalDate fechaActual = LocalDate.now();
 
@@ -68,7 +71,8 @@ public class Parqueadero {
             registroVehiculo.add(fila);
         }
     }
-
+    
+    // Método para crear una matriz de enteros.
     public static int[][] crearMatriz(int filas, int columnas, Scanner scanner) {
         int[][] matriz = new int[filas][columnas];
         for (int i = 0; i < filas; i++) {
@@ -79,7 +83,8 @@ public class Parqueadero {
         }
         return matriz;
     }
-
+    
+    //Método para imprimir una matriz de enteros.
     public static void imprimirMatriz(int[][] matriz) {
         System.out.println("Matriz:");
         for (int i = 0; i < matriz.length; i++) {
@@ -89,7 +94,8 @@ public class Parqueadero {
             System.out.println();
         }
     }
-
+    
+    // Método para obtener una lista de todos los vehículos.
     public List<Vehiculo> getVehiculos() {
         List<Vehiculo> vehiculos = new ArrayList<>();
         for (List<Vehiculo> fila : registroVehiculo) {
@@ -101,7 +107,8 @@ public class Parqueadero {
         }
         return vehiculos;
     }
-
+    
+    // Método para transformar las filas y columnas del parqueadero en una lista de colecciones de vehículos.
     public List<List<Collection<Vehiculo>>> ingresarFilasYColumnas() {
         List<List<Collection<Vehiculo>>> resultado = new ArrayList<>();
         for (List<Vehiculo> fila : registroVehiculo) {
@@ -117,11 +124,13 @@ public class Parqueadero {
         }
         return resultado;
     }
-
+    
+    // Método para verificar si un puesto en el parqueadero está ocupado.
     public boolean verificarPuestoOcupado(int fila, int columna) {
         return registroVehiculo.get(fila).get(columna) != null;
     }
-
+    
+    // Método para verificar si un vehículo ya existe en el parqueadero.
     public boolean verificarVehiculoExiste(Vehiculo vehiculo) {
         for (List<Vehiculo> fila : registroVehiculo) {
             for (Vehiculo v : fila) {
@@ -132,7 +141,8 @@ public class Parqueadero {
         }
         return false;
     }
-
+    
+    // Método para agregar un vehículo al parqueadero.
     public void agregar(Vehiculo vehiculo) {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
@@ -144,7 +154,8 @@ public class Parqueadero {
         }
         throw new IllegalStateException("No hay espacio disponible en el parqueadero");
     }
-
+    
+    // Método para registrar un vehículo en una posición específica del parqueadero.
     public void registrarVehiculo(int fila, int columna, Vehiculo vehiculo) {
         if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas || verificarPuesto(fila, columna) || verificarVehiculoExiste(vehiculo)) {
             System.out.println("Posición inválida/Puesto ocupado/Vehículo ya existe.");
@@ -152,7 +163,8 @@ public class Parqueadero {
             registroVehiculo.get(fila).set(columna, vehiculo);
         }
     }
-
+    
+    // Método para listar todos los vehículos en el parqueadero.
     public void listarVehiculos() {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
@@ -165,12 +177,14 @@ public class Parqueadero {
             }
         }
     }
-
+    
+    // Método para obtener la diferencia de horas entre la fecha de entrada y la fecha de salida de un vehículo.
     public long obtenerDiferenciaHoras(Vehiculo vehiculo) {
         Duration duracion = Duration.between(vehiculo.getFechaEntrada(), vehiculo.getFechaSalida());
         return duracion.toHours();
     }
 
+    // Método para calcular el costo de estacionamiento para un vehículo.
     public double calcularCosto(Vehiculo vehiculo) {
         if (vehiculo instanceof Carro) {
             return obtenerDiferenciaHoras(vehiculo) * tarifaCarro;
@@ -186,10 +200,12 @@ public class Parqueadero {
         }
     }
 
+    // Método para obtener el número de días en un mes específico.
     public static int diasEnMes(int mesActual, int anoActual) {
         return YearMonth.of(anoActual, mesActual).lengthOfMonth();
     }
-
+    
+    // Método para verificar si un puesto en el parqueadero está dentro del rango válido.
     public boolean verificarPuesto(int fila, int columna) {
         if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas) {
             throw new IndexOutOfBoundsException("Posición fuera de rango");
