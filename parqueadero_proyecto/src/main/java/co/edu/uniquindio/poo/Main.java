@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Parqueadero parqueadero = new Parqueadero(3, 3, 100, 100, 200); // Inicializar con valores por defecto
+        Parqueadero parqueadero = new Parqueadero(3, 3, 100, 100, 200);// Iniciar con valores por defecto 
         Registro registro = new Registro();
         ReporteMonetario reporteMonetario = new ReporteMonetario(parqueadero);
 
@@ -25,25 +25,26 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    parqueadero.ParqueaderoInput();
+                    parqueadero.ParqueaderoInput(); // Configurar parqueadero
+
                     break;
                 case 2:
-                    registrarVehiculo(parqueadero, registro, scanner);
+                    registrarVehiculo(parqueadero, registro, scanner); // Registrar vehículo
                     break;
                 case 3:
-                    listarVehiculos(parqueadero);
+                    listarVehiculos(parqueadero); // Listar vehículos
                     break;
                 case 4:
-                    calcularCosto(parqueadero, registro, scanner);
+                    calcularCosto(parqueadero, registro, scanner); // Calcular costo
                     break;
                 case 5:
-                    generarReporteDiario(reporteMonetario);
+                    generarReporteDiario(reporteMonetario); // Generar reporte diario
                     break;
                 case 6:
-                    generarReporteMensual(reporteMonetario, scanner);
+                    generarReporteMensual(reporteMonetario, scanner); // Generar reporte mensual
                     break;
                 case 7:
-                    System.out.println("Saliendo...");
+                    System.out.println("Saliendo..."); // Salir
                     scanner.close();
                     return;
                 default:
@@ -52,6 +53,7 @@ public class Main {
         }
     }
 
+// Método para registrar un nuevo vehículo
     private static void registrarVehiculo(Parqueadero parqueadero, Registro registro, Scanner scanner) {
         System.out.println("Ingrese el tipo de vehículo (1: Carro, 2: Moto): ");
         int tipoVehiculo = Integer.parseInt(scanner.nextLine());
@@ -86,11 +88,12 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
-
+// Método para listar los vehículos estacionados
     private static void listarVehiculos(Parqueadero parqueadero) {
         parqueadero.listarVehiculos();
     }
 
+// Método para calcular el costo de estacionamiento
     private static void calcularCosto(Parqueadero parqueadero, Registro registro, Scanner scanner) {
         System.out.print("Ingrese la placa del vehículo: ");
         String placa = scanner.nextLine();
@@ -110,14 +113,16 @@ public class Main {
         double costo = parqueadero.calcularCosto(vehiculo);
         System.out.println("El costo del estacionamiento para el vehículo con placa " + placa + " es: " + costo);
     }
-
+    
+// Método para generar un informe diario de ingresos
     private static void generarReporteDiario(ReporteMonetario reporteMonetario) {
         List<Double> ingresosDiarios = reporteMonetario.registrarDineroDiario();
         double totalDiario = ReporteMonetario.calcularDineroDiario(ingresosDiarios);
         System.out.println("Ingresos del día: " + ingresosDiarios);
         System.out.println("Total de ingresos del día: " + totalDiario);
     }
-
+ 
+// Método para generar un informe mensual de ingresos
     private static void generarReporteMensual(ReporteMonetario reporteMonetario, Scanner scanner) {
         System.out.print("Ingrese el mes (1-12): ");
         int mes = Integer.parseInt(scanner.nextLine());
