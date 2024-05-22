@@ -4,14 +4,10 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Pruebas para la clase Vehiculo.
- */
+// Pruebas para la clase Vehiculo.
 public class Test_Vehiculo {
 
-    /**
-     * Prueba la creación de un vehículo con valores iniciales.
-     */
+    // Prueba la creación de un vehículo con valores iniciales.
     @Test
     public void crearVehiculo() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 6, 20, 9, 0);
@@ -23,9 +19,7 @@ public class Test_Vehiculo {
         assertEquals(fechaEntrada, vehiculo.getFechaEntrada());
     }
 
-    /**
-     * Prueba la creación de un vehículo con fecha de entrada y salida.
-     */
+    // Prueba la creación de un vehículo con fecha de entrada y salida.
     @Test
     public void crearVehiculoConFechaSalida() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 6, 20, 9, 0);
@@ -39,9 +33,7 @@ public class Test_Vehiculo {
         assertEquals(fechaSalida, vehiculo.getFechaSalida());
     }
 
-    /**
-     * Prueba el establecimiento de la fecha de salida de un vehículo.
-     */
+    // Prueba el establecimiento de la fecha de salida de un vehículo.
     @Test
     public void establecerFechaSalidaVehiculo() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 6, 20, 9, 0);
