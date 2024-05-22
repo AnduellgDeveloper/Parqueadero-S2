@@ -1,6 +1,6 @@
 /**
  * Clase para probar el funcionamiento del código
- * @author Área de programación UQ
+ * @author Duvan Felipe Palomares Cerquera
  * @since 2023-08
  * 
  * Licencia GNU/GPL V3.0
