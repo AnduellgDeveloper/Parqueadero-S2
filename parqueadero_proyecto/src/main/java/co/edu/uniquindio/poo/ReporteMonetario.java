@@ -9,12 +9,14 @@ public class ReporteMonetario {
 
     private Parqueadero parqueadero;
 
+    // Constructor que inicializa el reporte monetario con el parqueadero proporcionado
     public ReporteMonetario(Parqueadero parqueadero) {
         this.parqueadero = parqueadero;
     }
 
-    /*................................ Registros Monetarios ............................. */
-    
+    /*................................. Registros Monetarios ............................. */
+
+    // Método para registrar los ingresos diarios en el parqueadero
     public List<Double> registrarDineroDiario() {
         List<Double> ingresosDelDia = new ArrayList<>();
         List<List<Vehiculo>> registroVehiculo = parqueadero.getRegistroVehiculo();
@@ -29,7 +31,7 @@ public class ReporteMonetario {
         return Collections.unmodifiableList(ingresosDelDia);
     }
 
-    // Función auxiliar para tests
+    // Función auxiliar para registrar ingresos diarios (utilizada en pruebas)
     public static List<Double> registrarDineroDiario(Vehiculo[] vehiculos, Parqueadero parqueadero) {
         List<Double> ingresosDiarios = new ArrayList<>();
         for (Vehiculo vehiculo : vehiculos) {
@@ -38,6 +40,7 @@ public class ReporteMonetario {
         return ingresosDiarios;
     }
 
+    // Método para registrar los ingresos mensuales en el parqueadero
     public static List<Double> registrarDineroMensual(List<List<Double>> ingresosDiarios) {
         List<Double> ingresosMensuales = new ArrayList<>();
         for (List<Double> ingresosDia : ingresosDiarios) {
@@ -46,6 +49,7 @@ public class ReporteMonetario {
         return ingresosMensuales;
     }
 
+    // Método para registrar los ingresos mensuales en el parqueadero
     public List<Double> registrarDineroMensual(int mesActual, int anoActual) {
         List<Double> ingresosDelMes = new ArrayList<>();
 
@@ -61,6 +65,7 @@ public class ReporteMonetario {
 
     /*................................  Calculos Monetarios ............................. */
 
+    // Método para calcular el total de ingresos diarios
     public static double calcularDineroDiario(List<Double> ingresosDelDia) {
         double total = 0.0;
         for (double ingreso : ingresosDelDia) {
@@ -69,6 +74,7 @@ public class ReporteMonetario {
         return total;
     }
 
+    // Método para calcular el total de ingresos mensuales
     public static double calcularDineroMensual(List<Double> ingresosMensuales) {
         return ingresosMensuales.stream().mapToDouble(Double::doubleValue).sum();
     }
