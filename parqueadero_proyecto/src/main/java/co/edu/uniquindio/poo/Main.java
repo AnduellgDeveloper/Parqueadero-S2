@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Parqueadero parqueadero = new Parqueadero(0, 0, 0, 0, 0); // Inicializar con valores por defecto
+        Parqueadero parqueadero = new Parqueadero(3, 3, 100, 100, 200); // Inicializar con valores por defecto
         Registro registro = new Registro();
         ReporteMonetario reporteMonetario = new ReporteMonetario(parqueadero);
 
