@@ -156,10 +156,7 @@ private static void retirarVehiculo(Parqueadero parqueadero, Registro registro, 
         System.out.print("Ingrese la placa del vehículo: ");
         String placa = scanner.nextLine();
 
-        Vehiculo vehiculo = registro.getVehiculosRegistrados().stream()
-                .filter(v -> v.getPlaca().equals(placa))
-                .findFirst()
-                .orElse(null);
+        Vehiculo vehiculo = registro.getVehiculosRegistrados().stream().filter(v -> v.getPlaca().equals(placa)).findFirst().orElse(null);
 
         if (vehiculo == null) {
             System.out.println("Vehículo no encontrado.");

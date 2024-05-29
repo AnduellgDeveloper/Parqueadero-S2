@@ -94,7 +94,7 @@ public class Parqueadero {
             System.out.println();
         }
     }
-    
+        
     // Método para obtener una lista de todos los vehículos.
     public List<Vehiculo> getVehiculos() {
         List<Vehiculo> vehiculos = new ArrayList<>();

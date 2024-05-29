@@ -49,8 +49,8 @@ public class ReporteMonetario {
         return ingresosMensuales;
     }
 
-    // Método para registrar los ingresos mensuales en el parqueadero
-    public List<Double> registrarDineroMensual(int mesActual, int anoActual) {
+     // Método para registrar los ingresos mensuales en el parqueadero
+     public List<Double> registrarDineroMensual(int mesActual, int anoActual) {
         List<Double> ingresosDelMes = new ArrayList<>();
 
         for (int dia = 1; dia <= Parqueadero.diasEnMes(mesActual, anoActual); dia++) {
@@ -63,6 +63,8 @@ public class ReporteMonetario {
         return Collections.unmodifiableList(ingresosDelMes);
     }
 
+    
+
     /*................................  Calculos Monetarios ............................. */
 
     // Método para calcular el total de ingresos diarios
@@ -74,8 +76,10 @@ public class ReporteMonetario {
         return total;
     }
 
-    // Método para calcular el total de ingresos mensuales
+    /// Método para calcular el total de ingresos mensuales
     public static double calcularDineroMensual(List<Double> ingresosMensuales) {
         return ingresosMensuales.stream().mapToDouble(Double::doubleValue).sum();
     }
+
+    
 }
