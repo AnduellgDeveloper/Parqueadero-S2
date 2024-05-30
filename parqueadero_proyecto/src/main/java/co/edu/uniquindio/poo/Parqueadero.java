@@ -197,7 +197,7 @@ public class Parqueadero {
     // Método para obtener la diferencia de horas entre la fecha de entrada y la fecha de salida de un vehículo.
     public long obtenerDiferenciaHoras(Vehiculo vehiculo) {
         Duration duracion = Duration.between(vehiculo.getFechaEntrada(), vehiculo.getFechaSalida());
-        return duracion.toSeconds();
+        return duracion.toHours();
     }
 
     // Método para calcular el costo de estacionamiento para un vehículo.

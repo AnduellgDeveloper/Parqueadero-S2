@@ -16,7 +16,7 @@ public class Test_Parqueadero {
     public void obtenerDiferenciaHorasTest() {
         LOG.info("Iniciando test obtenerDiferenciaHoras");
         Parqueadero parqueadero = new Parqueadero(2, 2, 1000, 800, 500);
-        Vehiculo carro = new Carro("XYZ123", "Toyota", "Juan", LocalDateTime.of(2024, 1, 22, 7, 0));
+        Vehiculo carro = new Carro("JIR21G", "TWINGO", "Fernando", LocalDateTime.of(2024, 1, 22, 7, 0));
 
         parqueadero.agregar(carro);
         carro.setFechaSalida(LocalDateTime.of(2024, 1, 22, 8, 0)); // Cambiada la fecha para un caso de prueba válido
@@ -34,7 +34,7 @@ public class Test_Parqueadero {
 
         Parqueadero parqueadero = new Parqueadero(2, 2, 1000, 800, 500);
 
-        Vehiculo carro = new Carro("XYZ123", "Toyota", "Juan", LocalDateTime.of(2024, 1, 22, 7, 0));
+        Vehiculo carro = new Carro("JIR21G", "TWINGO", "TWINGO", LocalDateTime.of(2024, 1, 22, 7, 0));
         parqueadero.agregar(carro);
         carro.setFechaSalida(LocalDateTime.of(2024, 1, 22, 9, 0)); // 2 horas
 

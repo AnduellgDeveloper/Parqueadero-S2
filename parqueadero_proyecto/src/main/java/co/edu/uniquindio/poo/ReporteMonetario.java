@@ -2,7 +2,6 @@ package co.edu.uniquindio.poo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ReporteMonetario {
@@ -16,20 +15,24 @@ public class ReporteMonetario {
 
     /*................................. Registros Monetarios ............................. */
 
-    // Método para registrar los ingresos diarios en el parqueadero
-    public List<Double> registrarDineroDiario() {
+    public List<Double> registrarDineroDiario(LocalDateTime fecha) {
         List<Double> ingresosDelDia = new ArrayList<>();
         List<List<Vehiculo>> registroVehiculo = parqueadero.getRegistroVehiculo();
-
+    
         for (List<Vehiculo> fila : registroVehiculo) {
             for (Vehiculo vehiculo : fila) {
                 if (vehiculo != null && vehiculo.getFechaSalida() != null) {
-                    ingresosDelDia.add(parqueadero.calcularCosto(vehiculo));
+                    LocalDateTime fechaSalida = vehiculo.getFechaSalida();
+                    if (fechaSalida.toLocalDate().isEqual(fecha.toLocalDate())) {
+                        ingresosDelDia.add(parqueadero.calcularCosto(vehiculo));
+                    }
                 }
             }
         }
-        return Collections.unmodifiableList(ingresosDelDia);
+        return ingresosDelDia;
     }
+    
+
 
     // Función auxiliar para registrar ingresos diarios (utilizada en pruebas)
     public static List<Double> registrarDineroDiario(Vehiculo[] vehiculos, Parqueadero parqueadero) {
@@ -40,7 +43,7 @@ public class ReporteMonetario {
         return ingresosDiarios;
     }
 
-    // Método para registrar los ingresos mensuales en el parqueadero
+    // Función auxiliar para registrar el dinero mensual (utilizada en pruebas) 
     public static List<Double> registrarDineroMensual(List<List<Double>> ingresosDiarios) {
         List<Double> ingresosMensuales = new ArrayList<>();
         for (List<Double> ingresosDia : ingresosDiarios) {
@@ -48,21 +51,27 @@ public class ReporteMonetario {
         }
         return ingresosMensuales;
     }
-
-     // Método para registrar los ingresos mensuales en el parqueadero
-     public List<Double> registrarDineroMensual(int mesActual, int anoActual) {
+    
+    public List<Double> registrarDineroMensual(int mesActual, int anoActual) {
         List<Double> ingresosDelMes = new ArrayList<>();
-
+    
         for (int dia = 1; dia <= Parqueadero.diasEnMes(mesActual, anoActual); dia++) {
             LocalDateTime fecha = LocalDateTime.of(anoActual, mesActual, dia, 0, 0);
-            List<Double> costosPorDia = registrarDineroDiario();
-            double totalDiario = calcularDineroDiario(costosPorDia);
+            List<Double> costosPorDia = registrarDineroDiario(fecha); // Pasar la fecha al método
+    
+            double totalDiario = 0.0;
+            if (!costosPorDia.isEmpty()) {
+                totalDiario = calcularDineroDiario(costosPorDia);
+            }
             ingresosDelMes.add(totalDiario);
-            System.out.println(fecha);
+    
+            System.out.println(fecha + " - Ingresos del día: " + (costosPorDia.isEmpty() ? "0.0" : totalDiario));
         }
-        return Collections.unmodifiableList(ingresosDelMes);
+        return ingresosDelMes;
     }
+    
 
+    
     
 
     /*................................  Calculos Monetarios ............................. */
