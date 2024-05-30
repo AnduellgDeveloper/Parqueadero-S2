@@ -15,7 +15,7 @@ public class ReporteMonetario {
 
     /*................................. Registros Monetarios ............................. */
 
-    public List<Double> registrarDineroDiario(LocalDateTime fecha) {
+     public List<Double> registrarDineroDiario(LocalDateTime fecha) {
         List<Double> ingresosDelDia = new ArrayList<>();
         List<List<Vehiculo>> registroVehiculo = parqueadero.getRegistroVehiculo();
     
@@ -32,26 +32,8 @@ public class ReporteMonetario {
         return ingresosDelDia;
     }
     
-
-
-    // Función auxiliar para registrar ingresos diarios (utilizada en pruebas)
-    public static List<Double> registrarDineroDiario(Vehiculo[] vehiculos, Parqueadero parqueadero) {
-        List<Double> ingresosDiarios = new ArrayList<>();
-        for (Vehiculo vehiculo : vehiculos) {
-            ingresosDiarios.add(parqueadero.calcularCosto(vehiculo));
-        }
-        return ingresosDiarios;
-    }
-
-    // Función auxiliar para registrar el dinero mensual (utilizada en pruebas) 
-    public static List<Double> registrarDineroMensual(List<List<Double>> ingresosDiarios) {
-        List<Double> ingresosMensuales = new ArrayList<>();
-        for (List<Double> ingresosDia : ingresosDiarios) {
-            ingresosMensuales.add(calcularDineroDiario(ingresosDia));
-        }
-        return ingresosMensuales;
-    }
     
+    // Metodo para registrar el dinero mensual  
     public List<Double> registrarDineroMensual(int mesActual, int anoActual) {
         List<Double> ingresosDelMes = new ArrayList<>();
     
@@ -69,10 +51,26 @@ public class ReporteMonetario {
         }
         return ingresosDelMes;
     }
+   
+    /*................................. Registros Monetarios Usados en Pruebas ............................. */
     
+    // Metodo auxiliar para registrar ingresos diarios (utilizada en pruebas)
+    public static List<Double> registrarDineroDiario(Vehiculo[] vehiculos, Parqueadero parqueadero) {
+        List<Double> ingresosDiarios = new ArrayList<>();
+        for (Vehiculo vehiculo : vehiculos) {
+            ingresosDiarios.add(parqueadero.calcularCosto(vehiculo));
+        }
+        return ingresosDiarios;
+    }
 
-    
-    
+    // Metodo auxiliar para registrar el dinero mensual (utilizada en pruebas) 
+    public static List<Double> registrarDineroMensual(List<List<Double>> ingresosDiarios) {
+        List<Double> ingresosMensuales = new ArrayList<>();
+        for (List<Double> ingresosDia : ingresosDiarios) {
+            ingresosMensuales.add(calcularDineroDiario(ingresosDia));
+        }
+        return ingresosMensuales;
+    }
 
     /*................................  Calculos Monetarios ............................. */
 
@@ -89,6 +87,8 @@ public class ReporteMonetario {
     public static double calcularDineroMensual(List<Double> ingresosMensuales) {
         return ingresosMensuales.stream().mapToDouble(Double::doubleValue).sum();
     }
+
+
 
     
 }

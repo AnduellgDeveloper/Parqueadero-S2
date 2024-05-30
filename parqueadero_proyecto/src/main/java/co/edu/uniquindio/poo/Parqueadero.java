@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -108,27 +107,6 @@ public class Parqueadero {
         return vehiculos;
     }
     
-    // Método para transformar las filas y columnas del parqueadero en una lista de colecciones de vehículos.
-    public List<List<Collection<Vehiculo>>> ingresarFilasYColumnas() {
-        List<List<Collection<Vehiculo>>> resultado = new ArrayList<>();
-        for (List<Vehiculo> fila : registroVehiculo) {
-            List<Collection<Vehiculo>> filaTransformada = new ArrayList<>();
-            for (Vehiculo vehiculo : fila) {
-                if (vehiculo != null) {
-                    filaTransformada.add(Collections.singleton(vehiculo));
-                } else {
-                    filaTransformada.add(Collections.emptyList());
-                }
-            }
-            resultado.add(filaTransformada);
-        }
-        return resultado;
-    }
-    
-    // Método para verificar si un puesto en el parqueadero está ocupado.
-    public boolean verificarPuestoOcupado(int fila, int columna) {
-        return registroVehiculo.get(fila).get(columna) != null;
-    }
     
     // Método para verificar si un vehículo ya existe en el parqueadero.
     public boolean verificarVehiculoExiste(Vehiculo vehiculo) {
@@ -141,6 +119,8 @@ public class Parqueadero {
         }
         return false;
     }
+
+    
     
     // Método para agregar un vehículo al parqueadero.
     public void agregar(Vehiculo vehiculo) {
@@ -154,16 +134,7 @@ public class Parqueadero {
         }
         throw new IllegalStateException("No hay espacio disponible en el parqueadero");
     }
-    
-    // Método para registrar un vehículo en una posición específica del parqueadero.
-    public void registrarVehiculo(int fila, int columna, Vehiculo vehiculo) {
-        if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas || verificarPuesto(fila, columna) || verificarVehiculoExiste(vehiculo)) {
-            System.out.println("Posición inválida/Puesto ocupado/Vehículo ya existe.");
-        } else {
-            registroVehiculo.get(fila).set(columna, vehiculo);
-        }
-    }
-    
+     
     // Método para listar todos los vehículos en el parqueadero.
     public void listarVehiculos() {
         for (int i = 0; i < filas; i++) {
@@ -221,15 +192,6 @@ public class Parqueadero {
         return YearMonth.of(anoActual, mesActual).lengthOfMonth();
     }
     
-    // Método para verificar si un puesto en el parqueadero está dentro del rango válido.
-    public boolean verificarPuesto(int fila, int columna) {
-        if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas) {
-            throw new IndexOutOfBoundsException("Posición fuera de rango");
-        }
-        return registroVehiculo.get(fila).get(columna) != null;
-    }
-
-
     /*................................ Getters y Setters  ................................... */
     public int getFilas() {
         return filas;

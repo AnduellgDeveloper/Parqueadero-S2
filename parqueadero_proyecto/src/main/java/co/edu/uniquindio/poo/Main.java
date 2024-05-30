@@ -133,8 +133,6 @@ public class Main {
 
         // Actualizar la fecha de salida del vehículo
         vehiculo.setFechaSalida(LocalDateTime.now());
-
-        // Calcular el costo del estacionamiento
         double costo = parqueadero.calcularCosto(vehiculo);
 
         // Remover el vehículo del parqueadero

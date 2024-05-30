@@ -24,9 +24,12 @@ public class Vehiculo {
         this.fechaSalida = fechaSalida;
     }
 
+    // Setter fecha salida 
+    public void setFechaSalida(LocalDateTime fechaSalida) {
+        this.fechaSalida = fechaSalida;
+    }
 
-
-    /*................................ Getters y Setters ............................. */
+    /*................................ Getters ............................. */
     public String getPlaca() {
         return placa;
     }
@@ -47,7 +50,4 @@ public class Vehiculo {
         return fechaSalida;
     }
 
-    public void setFechaSalida(LocalDateTime fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
 }

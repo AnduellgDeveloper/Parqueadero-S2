@@ -13,11 +13,11 @@ public class Test_Moto {
     @Test
     public void crearMoto() {
         LocalDateTime fechaEntrada = LocalDateTime.of(2024, 5, 2, 8, 0);
-        Moto moto = new Moto("XYZ123", "Honda", "Juan", fechaEntrada, 150, TipoMoto.CLASICA);
+        Moto moto = new Moto("YOW22Z", "Honda", "Julian", fechaEntrada, 150, TipoMoto.CLASICA);
 
-        assertEquals("XYZ123", moto.getPlaca());
+        assertEquals("YOW22Z", moto.getPlaca());
         assertEquals("Honda", moto.getModelo());
-        assertEquals("Juan", moto.getPropietario());
+        assertEquals("Julian", moto.getPropietario());
         assertEquals(fechaEntrada, moto.getFechaEntrada());
         assertEquals(150, moto.getVelocidadMaxima());
         assertEquals(TipoMoto.CLASICA, moto.getTipo());
