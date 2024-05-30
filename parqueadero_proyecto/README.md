@@ -1,15 +1,13 @@
 # parqueadero_proyecto
-
-Descripciín basisca de su Proyecto de POO ...
+Parqueadero con funciones a partir del terminal, proyecto para el segundos semestre de la carrera de ing. de Sistemas en la UQ
 
 # Autores
 
-- Autor 1
-- Autor 2
+- Duvan Felipe Palomares Cerquera
 
 # Herramientas
 
-- [java 17](https://adoptium.net/es)
+- [java 22](https://adoptium.net/es)
 - [junit 5.10.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.10.0)
 - [maven](https://maven.apache.org)
 
