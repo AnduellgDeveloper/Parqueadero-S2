@@ -65,7 +65,18 @@ public class Main {
         System.out.print("Ingrese la placa del vehículo: ");
         String placa = scanner.nextLine();
 
-        // Verificar si ya existe un vehículo con la misma placa
+        // Verificar si ya existe un vehículo con la misma placa en el parqueadero
+        for (int i = 0; i < parqueadero.getFilas(); i++) {
+            for (int j = 0; j < parqueadero.getColumnas(); j++) {
+                Vehiculo v = parqueadero.getRegistroVehiculo().get(i).get(j);
+                if (v != null && v.getPlaca().equals(placa)) {
+                    System.out.println("Error: Ya existe un vehículo registrado con la placa " + placa);
+                    return;
+                }
+            }
+        }
+
+        // Verificar si ya existe un vehículo con la misma placa en el registro
         List<Vehiculo> vehiculosRegistrados = registro.getVehiculosRegistrados();
         for (Vehiculo v : vehiculosRegistrados) {
             if (v.getPlaca().equals(placa)) {
@@ -76,30 +87,51 @@ public class Main {
 
         System.out.print("Ingrese el modelo del vehículo: ");
         String modelo = scanner.nextLine();
-        System.out.print("Ingrese el nombre del propietario del vehículo: ");
+
+        System.out.print("Ingrese el nombre del propietario: ");
         String propietario = scanner.nextLine();
 
-        Vehiculo vehiculo;
+        LocalDateTime fechaEntrada = LocalDateTime.now();
+
+        Vehiculo nuevoVehiculo = null;
+
         if (tipoVehiculo == 1) {
-            vehiculo = new Carro(placa, modelo, propietario, LocalDateTime.now());
+            // Registro de un carro
+            nuevoVehiculo = new Carro(placa, modelo, propietario, fechaEntrada);
         } else if (tipoVehiculo == 2) {
-            System.out.println("Ingrese el tipo de moto (1: Clásica, 2: Híbrida): ");
-            int tipoMoto = Integer.parseInt(scanner.nextLine());
-            TipoMoto tipo = tipoMoto == 1 ? TipoMoto.CLASICA : TipoMoto.HIBRIDA;
+            // Registro de una moto
             System.out.print("Ingrese la velocidad máxima de la moto: ");
             int velocidadMaxima = Integer.parseInt(scanner.nextLine());
-            vehiculo = new Moto(placa, modelo, propietario, LocalDateTime.now(), velocidadMaxima, tipo);
+
+            System.out.println("Ingrese el tipo de moto (1: Clásica, 2: Híbrida): ");
+            int tipoMotoSeleccion = Integer.parseInt(scanner.nextLine());
+            TipoMoto tipoMoto = (tipoMotoSeleccion == 1) ? TipoMoto.CLASICA : TipoMoto.HIBRIDA;
+
+            nuevoVehiculo = new Moto(placa, modelo, propietario, fechaEntrada, velocidadMaxima, tipoMoto);
         } else {
-            System.out.println("Tipo de vehículo no válido.");
+            System.out.println("Error: Tipo de vehículo no válido.");
             return;
         }
 
-        try {
-            parqueadero.agregar(vehiculo);
-            registro.registrarVehiculo(vehiculo);
-            System.out.println("Vehículo registrado correctamente.");
-        } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
+        // Encontrar una posición disponible en el parqueadero
+        boolean registrado = false;
+        for (int i = 0; i < parqueadero.getFilas(); i++) {
+            for (int j = 0; j < parqueadero.getColumnas(); j++) {
+                if (!parqueadero.verificarPuesto(i, j)) {
+                    parqueadero.registrarVehiculo(i, j, nuevoVehiculo);
+                    registrado = true;
+                    break;
+                }
+            }
+            if (registrado) break;
+        }
+
+        if (registrado) {
+            // Agregar el vehículo a los registros
+            vehiculosRegistrados.add(nuevoVehiculo);
+            System.out.println("Vehículo registrado exitosamente.");
+        } else {
+            System.out.println("Error: No hay espacio disponible en el parqueadero.");
         }
     }
 
@@ -137,6 +169,9 @@ public class Main {
 
         // Remover el vehículo del parqueadero
         parqueadero.getRegistroVehiculo().get(fila).set(columna, null);
+
+        // Remover el vehículo de la lista de vehículos registrados
+        registro.getVehiculosRegistrados().remove(vehiculo);
 
         System.out.println("Vehículo con placa " + placa + " retirado del parqueadero.");
         System.out.println("Costo del estacionamiento: $" + costo);

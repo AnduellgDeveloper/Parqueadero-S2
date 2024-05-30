@@ -119,8 +119,6 @@ public class Parqueadero {
         }
         return false;
     }
-
-    
     
     // Método para agregar un vehículo al parqueadero.
     public void agregar(Vehiculo vehiculo) {
@@ -171,6 +169,15 @@ public class Parqueadero {
         return duracion.toHours();
     }
 
+    // Método para verificar si un puesto en el parqueadero está ocupado
+    public boolean verificarPuesto(int fila, int columna) {
+        if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas) {
+            throw new IndexOutOfBoundsException("Posición fuera de rango");
+        }
+        return registroVehiculo.get(fila).get(columna) != null;
+    }
+
+
     // Método para calcular el costo de estacionamiento para un vehículo.
     public double calcularCosto(Vehiculo vehiculo) {
         if (vehiculo instanceof Carro) {
@@ -191,6 +198,24 @@ public class Parqueadero {
     public static int diasEnMes(int mesActual, int anoActual) {
         return YearMonth.of(anoActual, mesActual).lengthOfMonth();
     }
+
+    // Método para registrar un vehículo en una posición específica del parqueadero
+    public void registrarVehiculo(int fila, int columna, Vehiculo vehiculo) {
+    if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas) {
+        throw new IndexOutOfBoundsException("Posición fuera de rango");
+    }
+    if (verificarPuesto(fila, columna)) {
+        System.out.println("Error: El puesto en [" + fila + "][" + columna + "] está ocupado.");
+        return;
+    }
+    if (verificarVehiculoExiste(vehiculo)) {
+        System.out.println("Error: Ya existe un vehículo con la placa " + vehiculo.getPlaca());
+        return;
+    }
+    registroVehiculo.get(fila).set(columna, vehiculo);
+    System.out.println("Vehículo registrado en la posición [" + fila + "][" + columna + "].");
+}
+
     
     /*................................ Getters y Setters  ................................... */
     public int getFilas() {
